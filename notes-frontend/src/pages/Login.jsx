@@ -16,18 +16,18 @@ function Login()
         e.preventDefault();
         try {
             const { data } = await api.post('/auth/login/', formData);
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('username', data.username);
+            if(data.token) localStorage.setItem('token', data.token);
+            if(data.username) localStorage.setItem('username', data.username);
             navigate('/notes');
         } catch (err) {
-            setError(err.response?.data?.error || 'Something went wrong'); // err.response?.data?.error (Optional Chaining = if err.response exist than access err.response.data and if err.response.data exists than acces err.response.data.error)
+            setError({error_view: err.response?.data?.error_view}); // err.response?.data (Optional Chaining = if err.response exist than access err.response.data)
         }
     };
 
     return(<>
         <div className='login-div'>
             <h2>Login</h2>
-            {error && <p className='error-line'>{error}</p>}
+            {error.error_view && <p className="error-line" aria-required>{error.error_view}</p>}
             <input
                 name="username"
                 placeholder="Username"

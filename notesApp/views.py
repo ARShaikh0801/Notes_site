@@ -32,9 +32,10 @@ class RegisterView(APIView):
         data = serializer.validated_data
 
         if User.objects(username=data['username']).first():
-            return Response({'error': 'Username already exists'}, status=400)
+            return Response({'error_view': 'Username already exists'}, status=400)
+        
         if User.objects(email=data['email']).first():
-            return Response({'error': 'Email already exists'}, status=400)
+            return Response({'error_view': 'Email already exists'}, status=400)
 
         user = User(username=data['username'], email=data['email'])
         user.set_password(data['password'])
@@ -53,7 +54,7 @@ class LoginView(APIView):
         user = User.objects(username=data['username']).first()
 
         if not user or not user.check_password(data['password']):
-            return Response({'error': 'Invalid credentials'}, status=401)
+            return Response({'error_view': 'Invalid credentials'}, status=401)
 
         token = generate_token(user.id, user.username)
         return Response({'token': token, 'username': user.username})
@@ -108,7 +109,7 @@ class NoteDetailView(APIView):
         if 'is_pinned' in data:
             note.is_pinned = data['is_pinned']
 
-        note.updated_at = datetime.datetime.now()
+        note.updated_at =  datetime.datetime.now(datetime.timezone.utc)
         note.save()
         return Response(NoteSerializer(note).data)
 

@@ -22,7 +22,7 @@ class Note(Document):
     title      = StringField(required=True, max_length=200)
     content    = StringField(required=True)
     is_pinned  = BooleanField(default=False)
-    created_at = DateTimeField(default=datetime.datetime.now())
-    updated_at = DateTimeField(default=datetime.datetime.now())
+    created_at = DateTimeField(default= datetime.datetime.now(datetime.timezone.utc))
+    updated_at = DateTimeField(default= datetime.datetime.now(datetime.timezone.utc))
 
     meta = {'collection': 'notes'}
