@@ -4,6 +4,15 @@ import api from '../api/axios';
 import './login.css';
 import LoginLoader from '../components/LoginLoader.jsx';
 
+const loginMessages = [
+    "Turning the key…",
+    "Cracking open the journal…",
+    "Blowing the dust off…",
+    "Finding your last page…",
+    "Uncapping the pen…",
+    "Welcome back…",
+];
+
 function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({ username: '', password: '' });
@@ -54,7 +63,7 @@ function Login() {
 
     return (
         <div className="login-bg">
-            {isLoading && <LoginLoader />}
+            {isLoading && <LoginLoader messages={loginMessages} />}
             <div className="login-div">
 
                 {/* Header */}

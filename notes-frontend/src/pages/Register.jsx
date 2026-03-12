@@ -5,11 +5,12 @@ import './register.css';
 import LoginLoader from '../components/LoginLoader';
 
 const registerMessages = [
-    "Setting up your journal…",
-    "Preparing a fresh notebook…",
-    "Writing your first page…",
-    "Sharpening the pencil…",
-    "Almost ready…",
+    "Inking your name in the journal…",
+    "Binding a fresh notebook for you…",
+    "Ruling the first page…",
+    "Sharpening a pencil…",
+    "Stocking up on sticky notes…",
+    "Almost ready to write…",
 ];
 
 function Register() {

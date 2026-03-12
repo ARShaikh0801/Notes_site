@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react';
 import '../styles/LoginLoader.css';
 
-const defaultMessages = [
-    "Dusting off your notes…",
-    "Unlocking the journal…",
-    "Fetching your thoughts…",
-    "Warming up the ink…",
-    "Almost there…",
-];
 
-function LoginLoader({ messages = defaultMessages }) {
+
+function LoginLoader({ messages=null }) {
     const [msgIndex, setMsgIndex] = useState(0);
     const [fading, setFading] = useState(false);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setFading(true);
-            setTimeout(() => {
-                setMsgIndex(i => (i + 1) % messages.length);
-                setFading(false);
-            }, 350);
-        }, 1800);
-        return () => clearInterval(interval);
-    }, [messages]);
+    if (messages)
+    {
+        useEffect(() => {
+            const interval = setInterval(() => {
+                setFading(true);
+                setTimeout(() => {
+                    setMsgIndex(i => (i + 1) % messages.length);
+                    setFading(false);
+                }, 350);
+            }, 1800);
+            return () => clearInterval(interval);
+        }, [messages]);
+    }
 
     return (
         <div className="loader-overlay">
@@ -39,14 +36,21 @@ function LoginLoader({ messages = defaultMessages }) {
                 </div>
 
                 {/* Cycling text */}
-                <p className={`loader-msg ${fading ? 'fade-out' : 'fade-in'}`}>
-                    {messages[msgIndex]}
-                </p>
+                {messages ? 
+                    <p className={`loader-msg ${fading ? 'fade-out' : 'fade-in'}`}>
+                        {messages[msgIndex]}
+                    </p> :
+                    ""
+                }
+                
 
                 {/* Dot trail */}
-                <div className="loader-dots">
-                    <span /><span /><span />
-                </div>
+                {messages ?
+                    <div className="loader-dots">
+                        <span /><span /><span />
+                    </div> :
+                    ""
+                }
             </div>
         </div>
     );

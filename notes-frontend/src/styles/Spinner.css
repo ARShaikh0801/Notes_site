@@ -1,13 +1,48 @@
-.spinner {
-  display: inline-block;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-top-color: currentColor;
-  border-radius: 50%;
-  animation: spin 0.65s linear infinite;
-  flex-shrink: 0;
+/* ── Wrapper ── */
+.sq-spinner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   vertical-align: middle;
+  flex-shrink: 0;
+  perspective: 80px;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* ── Shared ring base ── */
+.sq-ring {
+  position: absolute;
+  border-radius: 2px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+/* ── Outer ring — spins forward ── */
+.sq-ring-1 {
+  width: 100%;
+  height: 100%;
+  border-width: 2px;
+  border:1px solid currentColor;
+  opacity: 0.9;
+  animation: sqSpinFwd 1.0s linear infinite;
+}
+
+/* ── Inner ring — spins backward ── */
+.sq-ring-2 {
+  width: 55%;
+  height: 55%;
+  border-width: 2px;
+  border:1px solid currentColor;
+  opacity: 0.6;
+  animation: sqSpinBwd 0.7s linear infinite;
+}
+
+@keyframes sqSpinFwd {
+  from { transform: rotateX(0deg); }
+  to   { transform: rotateX(360deg); }
+}
+
+@keyframes sqSpinBwd {
+  from { transform: rotateX(0deg); }
+  to   { transform: rotateX(-360deg); }
 }

@@ -7,10 +7,21 @@ import QuickCreateForm from "../components/QuickCreateForm";
 import NoteCard from "../components/NoteCard";
 import CreateNoteModal from "../components/CreateNoteModal";
 import EditNoteModal from "../components/EditNoteModal";
+import LoginLoader from "../components/LoginLoader";
 
 import "./notes.css";
 
+const pageMessages = [
+    "Opening your notebook…",
+    "Gathering your thoughts…",
+    "Dusting off the pages…",
+    "Sorting the pinned ones first…",
+    "Here are your thoughts…",
+    "Almost ready…",
+];
+
 function Notes() {
+    const [pageLoading, setPageLoading] = useState(true);
     const navigate = useNavigate();
     const username = localStorage.getItem('username');
     const bottomRef = useRef(null);
@@ -39,8 +50,14 @@ function Notes() {
             setNotes(data);
         } catch (err) {
             if (err.response?.status === 401) navigate('/login');
+        } finally{
+            setPageLoading(false);
         }
     };
+
+    if (pageLoading) {
+        return <LoginLoader messages={pageMessages} />;
+    }
 
     // ── Pin / Delete ───────────────────────────────────
     const handlePin = async (e, note) => {

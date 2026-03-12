@@ -1,12 +1,15 @@
 import '../styles/Spinner.css';
 
-function Spinner({ size = 14, color = 'currentColor' }) {
+function Spinner({ size = 16 }) {
     return (
         <span
-            className="spinner"
-            style={{ width: size, height: size, borderTopColor: color }}
+            className="sq-spinner"
+            style={{ width: size, height: size }}
             aria-label="Loading"
-        />
+        >
+            <span className="sq-ring sq-ring-1" />
+            <span className="sq-ring sq-ring-2" />
+        </span>
     );
 }
 
