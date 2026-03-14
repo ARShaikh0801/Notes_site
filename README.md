@@ -1,4 +1,4 @@
-# 📝 NoteFlow — Full-Stack Notes Application
+# 📝 Papertrail — Full-Stack Notes Application
 
 A modern, full-stack notes app built with **Django REST Framework** and **React 19**. Create, edit, pin, and organize your notes with a beautiful dark-mode UI — backed by MongoDB Atlas.
 
@@ -90,8 +90,8 @@ notes/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/notes.git
-cd notes
+git clone https://github.com/ARShaikh0801/Papertrail.git
+cd Papertrail
 ```
 
 ### 2. Backend Setup
@@ -146,7 +146,7 @@ The app will be available at **http://localhost:5173**
 
 ## 🎨 Screenshots
 
-> _Add screenshots of your app here to showcase the UI._
+
 
 ---
 
